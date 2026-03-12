@@ -42,6 +42,10 @@ class QiniuUploaderTests(unittest.TestCase):
         self.assertEqual(result, "https://qncweb.ktvsky.com/seedream/1700000000.png")
 
     @patch.dict(os.environ, {}, clear=True)
-    def test_missing_qiniu_env_raises(self):
-        with self.assertRaisesRegex(RuntimeError, "QINIU"):
-            QiniuUploader()
+    def test_uses_company_defaults_when_env_missing(self):
+        uploader = QiniuUploader()
+        self.assertEqual(uploader.upload_url, "https://up-z1.qiniup.com")
+        self.assertEqual(uploader.cdn_domain, "https://qncweb.ktvsky.com")
+        self.assertEqual(uploader.token_api, "/c/qiniu/get_upload_token")
+        self.assertEqual(uploader.check_api, "/vadd/facechange/mv/qiniu/check")
+        self.assertEqual(uploader.base_url, "https://m.ktvsky.com")

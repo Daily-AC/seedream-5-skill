@@ -8,17 +8,13 @@ Standalone Seedream 5.0 skill with automatic local-image upload through the comp
 python3 -m pip install -r requirements.txt
 ```
 
-Set environment variables:
+Set the required environment variable:
 
 ```bash
 export ARK_API_KEY="your-ark-api-key"
-export QINIU_UPLOAD_URL="https://up-z1.qiniup.com"
-export QINIU_CDN_DOMAIN="https://qncweb.ktvsky.com"
-export QINIU_TOKEN_API="/c/qiniu/get_upload_token"
-export QINIU_CHECK_API="/vadd/facechange/mv/qiniu/check"
-export QINIU_BASE_URL="https://m.ktvsky.com"
-export QINIU_DIRECTORY="seedream"
 ```
+
+Qiniu uses the company's built-in defaults. You only need to set Qiniu-related environment variables if your company values change and you want to override them.
 
 ## Examples
 

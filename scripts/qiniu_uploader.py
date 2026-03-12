@@ -16,25 +16,12 @@ def build_key_name(directory, ts=None, suffix=".png"):
 
 class QiniuUploader:
     def __init__(self):
-        self.upload_url = os.getenv("QINIU_UPLOAD_URL")
-        self.cdn_domain = os.getenv("QINIU_CDN_DOMAIN")
-        self.token_api = os.getenv("QINIU_TOKEN_API")
-        self.check_api = os.getenv("QINIU_CHECK_API")
-        self.base_url = os.getenv("QINIU_BASE_URL", "")
+        self.upload_url = os.getenv("QINIU_UPLOAD_URL", "https://up-z1.qiniup.com")
+        self.cdn_domain = os.getenv("QINIU_CDN_DOMAIN", "https://qncweb.ktvsky.com")
+        self.token_api = os.getenv("QINIU_TOKEN_API", "/c/qiniu/get_upload_token")
+        self.check_api = os.getenv("QINIU_CHECK_API", "/vadd/facechange/mv/qiniu/check")
+        self.base_url = os.getenv("QINIU_BASE_URL", "https://m.ktvsky.com")
         self.default_directory = os.getenv("QINIU_DIRECTORY", "seedream")
-
-        missing = [
-            name
-            for name, value in {
-                "QINIU_UPLOAD_URL": self.upload_url,
-                "QINIU_CDN_DOMAIN": self.cdn_domain,
-                "QINIU_TOKEN_API": self.token_api,
-                "QINIU_CHECK_API": self.check_api,
-            }.items()
-            if not value
-        ]
-        if missing:
-            raise RuntimeError(f"QINIU environment variables are required: {', '.join(missing)}")
 
     def _get_json(self, path, params):
         response = requests.get(f"{self.base_url}{path}", params=params, timeout=30)
