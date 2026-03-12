@@ -1,5 +1,7 @@
 # Seedream 5.0 Image Skill
 
+> **Agent?** 如果你是 AI agent（Claude Code / Codex / OpenClaw 等），请直接阅读 [`docs/agent-deployment.md`](docs/agent-deployment.md) 进行部署，不要看下面的人类文档。
+
 Standalone Seedream 5.0 image-generation skill.
 
 It supports:

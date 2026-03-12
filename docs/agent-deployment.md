@@ -41,7 +41,9 @@ Qiniu company defaults are already built in. Do not ask the user to configure Qi
 ## Install steps
 
 1. Ask whether install should be global or local.
-2. Clone this repo.
+2. Clone this repo:
+   - **Global (Claude Code)**: `git clone git@g.ktvsky.com:zhangyilin/seedream-5-skill.git ~/.claude/skills/seedream-5-image`
+   - **Local**: `git clone git@g.ktvsky.com:zhangyilin/seedream-5-skill.git ./seedream-5-image`
 3. Install dependencies:
    ```bash
    python3 -m pip install -r requirements.txt
