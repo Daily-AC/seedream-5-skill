@@ -47,8 +47,8 @@ The config file contains API keys and Qiniu settings. See `config.example.json` 
 
 1. Ask whether install should be global or local.
 2. Clone this repo:
-   - **Global (Claude Code)**: `git clone https://github.com/joeseesun/seedream-5-skill.git ~/.claude/skills/seedream-5-image`
-   - **Local**: `git clone https://github.com/joeseesun/seedream-5-skill.git ./seedream-5-image`
+   - **Global (Claude Code)**: `git clone https://github.com/Daily-AC/seedream-5-skill.git ~/.claude/skills/seedream-5-image`
+   - **Local**: `git clone https://github.com/Daily-AC/seedream-5-skill.git ./seedream-5-image`
 3. Install dependencies:
    ```bash
    python3 -m pip install -r requirements.txt
