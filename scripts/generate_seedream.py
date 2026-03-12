@@ -85,7 +85,7 @@ def main():
         size=args.size,
         output_format=args.output_format,
         watermark=args.watermark,
-        sequential_image_generation=args.sequential,
+        sequential_image_generation="auto" if args.sequential else None,
         max_images=args.max_images,
     )
     print(result)

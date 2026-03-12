@@ -49,5 +49,5 @@ class GenerateSeedreamTests(unittest.TestCase):
         mock_generate.return_value = "outputs/out.png"
         with patch.object(sys, "argv", ["generate_seedream.py", "multi reference", "--sequential", "--max-images", "3"]):
             main()
-        self.assertTrue(mock_generate.call_args.kwargs["sequential_image_generation"])
+        self.assertEqual(mock_generate.call_args.kwargs["sequential_image_generation"], "auto")
         self.assertEqual(mock_generate.call_args.kwargs["max_images"], 3)

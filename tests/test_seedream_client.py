@@ -22,8 +22,8 @@ class BuildPayloadTests(unittest.TestCase):
         self.assertEqual(payload["image"], ["https://a.png", "https://b.png"])
 
     def test_build_payload_adds_sequential_options(self):
-        payload = build_payload("poster prompt", sequential_image_generation=True, max_images=3)
-        self.assertTrue(payload["sequential_image_generation"])
+        payload = build_payload("poster prompt", sequential_image_generation="auto", max_images=3)
+        self.assertEqual(payload["sequential_image_generation"], "auto")
         self.assertEqual(payload["sequential_image_generation_options"], {"max_images": 3})
 
 
