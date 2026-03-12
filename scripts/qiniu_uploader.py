@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 """Company Qiniu uploader for converting local image files to remote URLs."""
 
-import os
 import time
 from pathlib import Path
-from urllib.parse import urlparse
 
 import requests
 
-
-# Company domains that should bypass proxy
-_NO_PROXY_DOMAINS = "ktvsky.com,qiniup.com"
+try:
+    from scripts.config_loader import get
+except ModuleNotFoundError:
+    from config_loader import get
 
 
 def build_key_name(directory, ts=None, suffix=".png"):
@@ -28,13 +27,18 @@ def _no_proxy_session():
 
 class QiniuUploader:
     def __init__(self):
-        self.upload_url = os.getenv("QINIU_UPLOAD_URL", "https://up-z1.qiniup.com")
-        self.cdn_domain = os.getenv("QINIU_CDN_DOMAIN", "https://qncweb.ktvsky.com")
-        self.token_api = os.getenv("QINIU_TOKEN_API", "/c/qiniu/get_upload_token")
-        self.check_api = os.getenv("QINIU_CHECK_API", "/vadd/facechange/mv/qiniu/check")
-        self.base_url = os.getenv("QINIU_BASE_URL", "https://m.ktvsky.com")
-        self.default_directory = os.getenv("QINIU_DIRECTORY", "seedream")
+        self.upload_url = get("QINIU_UPLOAD_URL", "https://up-z1.qiniup.com")
+        self.cdn_domain = get("QINIU_CDN_DOMAIN")
+        self.token_api = get("QINIU_TOKEN_API")
+        self.check_api = get("QINIU_CHECK_API")
+        self.base_url = get("QINIU_BASE_URL")
+        self.default_directory = get("QINIU_DIRECTORY", "seedream")
         self._session = _no_proxy_session()
+        if not all([self.cdn_domain, self.token_api, self.base_url]):
+            raise RuntimeError(
+                "Missing Qiniu config. Place config.json in skill root or ~/.seedream-config.json. "
+                "Required keys: QINIU_CDN_DOMAIN, QINIU_TOKEN_API, QINIU_BASE_URL"
+            )
 
     def _get_json(self, path, params):
         response = self._session.get(f"{self.base_url}{path}", params=params, timeout=30)

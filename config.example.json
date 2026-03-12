@@ -1,0 +1,9 @@
+{
+  "ARK_API_KEY": "your-ark-api-key-here",
+  "QINIU_UPLOAD_URL": "https://up-z1.qiniup.com",
+  "QINIU_CDN_DOMAIN": "https://your-cdn-domain.com",
+  "QINIU_TOKEN_API": "/path/to/get_upload_token",
+  "QINIU_CHECK_API": "/path/to/check",
+  "QINIU_BASE_URL": "https://your-api-base.com",
+  "QINIU_DIRECTORY": "seedream"
+}

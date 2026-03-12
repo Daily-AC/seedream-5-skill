@@ -23,5 +23,4 @@ python3 scripts/generate_seedream.py "multi reference" --image https://a.png --i
 
 ## Requirements
 
-- `ARK_API_KEY`
-- company Qiniu env vars for local file upload
+- `config.json` in skill root or `~/.seedream-config.json` (contains ARK_API_KEY and Qiniu settings)

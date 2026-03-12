@@ -2,10 +2,14 @@
 """Seedream 5.0 client helpers."""
 
 import base64
-import os
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
+
+try:
+    from scripts.config_loader import require
+except ModuleNotFoundError:
+    from config_loader import require
 
 API_BASE = "https://ark.cn-beijing.volces.com/api/v3/images/generations"
 DEFAULT_MODEL = "doubao-seedream-5-0-260128"
@@ -14,10 +18,7 @@ DEFAULT_OUTPUT_FORMAT = "png"
 
 
 def get_api_key():
-    api_key = os.getenv("ARK_API_KEY")
-    if not api_key:
-        raise RuntimeError("ARK_API_KEY environment variable is required.")
-    return api_key
+    return require("ARK_API_KEY")
 
 
 def _is_remote_url(value):
@@ -56,6 +57,7 @@ def build_payload(
         "model": model,
         "prompt": prompt,
         "size": size,
+        "response_format": "b64_json",
         "output_format": output_format,
         "watermark": watermark,
     }

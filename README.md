@@ -18,16 +18,13 @@ Install dependencies:
 python3 -m pip install -r requirements.txt
 ```
 
-Set the required API key:
+Copy `config.example.json` to `config.json` and fill in your values:
 
 ```bash
-export ARK_API_KEY="your-ark-api-key"
+cp config.example.json config.json
 ```
 
-Notes:
-- `ARK_API_KEY` is the only required user config
-- company Qiniu defaults are already built in
-- local image files are uploaded to Qiniu first, then sent to Seedream as remote URLs
+Or place the config at `~/.seedream-config.json`.
 
 ## Quick examples
 
